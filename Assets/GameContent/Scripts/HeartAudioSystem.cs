@@ -2,37 +2,37 @@
 using System.Collections;
 using Kowa.MemoRandom;
 
-public class HeartAudioSystem : MonoBehaviour 
+public class HeartAudioSystem : MonoBehaviour
 {
-	[Tooltip("The time to wait between heart beats.")]
+	[Tooltip ( "The time to wait between heart beats." )]
 	public float OffsetTime = 1f;
-	[Tooltip("How much faster should the heart rate go the close the player is to an enemy?")]
-	public float EncounterRateModifier = 1f;
-	[Tooltip("The minimal heart rate.")]
-	public float MinRate = 0.1f;
-	[Tooltip("The maximal heart rate.")]
-	public float MaxRate = 1f;
+	[Tooltip ( "How much faster should the heart rate go the close the player is to an enemy?" )]
+	public float EncounterScalar = 1f;
+	[Tooltip ( "The minimal offset time for playing the heart beat." )]
+	public float MinOffset = 0.1f;
+	[Tooltip ( "The maximal offset time for playing the heart beat." )]
+	public float MaxOffset = 1f;
 	[Tooltip ( "Should the heart beat always play from the start?" )]
 	public bool PlayInBackground = false;
-	[Tooltip("The heart beat audio clips")]
+	[Tooltip ( "The heart beat audio clips" )]
 	public AudioClip[] Clips;
 
-	private float _initOffsetTime;
-	private AudioSource _audioSource;
+	private float initOffsetTime;
+	private AudioSource audioSource;
 
 
-	private void Awake()
+	private void Awake ()
 	{
-		_initOffsetTime = OffsetTime;
-		_audioSource = GetComponent<AudioSource>();
+		initOffsetTime = OffsetTime;
+		audioSource = GetComponent<AudioSource> ();
 		if (Clips == null)
 		{
-			Debug.LogError("No AudioClips on Heart!");
+			Debug.LogError ( "No AudioClips on Heart!" );
 		}
 	}
 
 
-	private void OnEnable()
+	private void OnEnable ()
 	{
 		EventManager.EnemyEnterSightEvent += OnEnemyEnterSight;
 		EventManager.EnemyInSightEvent += OnEnemyStayInSight;
@@ -40,16 +40,16 @@ public class HeartAudioSystem : MonoBehaviour
 		EventManager.PlayerDied += OnPlayerDeath;
 		if (PlayInBackground)
 		{
-			StartCoroutine( WaitAndPlayAudio() );
+			StartCoroutine ( WaitAndPlayAudio () );
 		}
 	}
 
 
-	private void OnDisable()
+	private void OnDisable ()
 	{
 		if (!PlayInBackground)
 		{
-			StopAllCoroutines();
+			StopAllCoroutines ();
 		}
 		EventManager.EnemyEnterSightEvent -= OnEnemyEnterSight;
 		EventManager.EnemyInSightEvent -= OnEnemyStayInSight;
@@ -58,34 +58,37 @@ public class HeartAudioSystem : MonoBehaviour
 	}
 
 
-	private void OnEnemyEnterSight()
-	{
-		StartCoroutine ( WaitAndPlayAudio () );
-	}
-
-
-	private void OnEnemyStayInSight(float distanceToEnemy)
-	{
-		OffsetTime = Mathf.Clamp( _initOffsetTime * distanceToEnemy * EncounterRateModifier, MinRate, MaxRate);
-	}
-
-
-	private void OnEnemyLeftSight()
+	private void OnEnemyEnterSight ()
 	{
 		if (!PlayInBackground)
 		{
-			StopAllCoroutines();
+			StartCoroutine ( WaitAndPlayAudio () );
 		}
-		OffsetTime = _initOffsetTime;
 	}
 
 
-	private IEnumerator WaitAndPlayAudio()
+	private void OnEnemyStayInSight ( float distanceToEnemy )
 	{
-		_audioSource.clip = Clips.DrawNext();
-		_audioSource.Play();
-		yield return new WaitForSeconds(OffsetTime);
-		StartCoroutine( WaitAndPlayAudio() );
+		OffsetTime = Mathf.Clamp ( initOffsetTime * distanceToEnemy * EncounterScalar, MinOffset, MaxOffset );
+	}
+
+
+	private void OnEnemyLeftSight ()
+	{
+		if (!PlayInBackground)
+		{
+			StopAllCoroutines ();
+		}
+		OffsetTime = initOffsetTime;
+	}
+
+
+	private IEnumerator WaitAndPlayAudio ()
+	{
+		audioSource.clip = Clips.DrawNext ();
+		audioSource.Play ();
+		yield return new WaitForSeconds ( audioSource.clip.length + OffsetTime );
+		StartCoroutine ( WaitAndPlayAudio () );
 	}
 
 
