@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blindness.CSharp", "Blindness.CSharp.csproj", "{6B037771-FF18-3A56-AAC4-115532FF15B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blindness.CSharp.Editor", "Blindness.CSharp.Editor.csproj", "{AEEB1DF4-729A-149A-96B4-B000997A402E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B037771-FF18-3A56-AAC4-115532FF15B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B037771-FF18-3A56-AAC4-115532FF15B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B037771-FF18-3A56-AAC4-115532FF15B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B037771-FF18-3A56-AAC4-115532FF15B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEEB1DF4-729A-149A-96B4-B000997A402E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEB1DF4-729A-149A-96B4-B000997A402E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEB1DF4-729A-149A-96B4-B000997A402E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEB1DF4-729A-149A-96B4-B000997A402E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
