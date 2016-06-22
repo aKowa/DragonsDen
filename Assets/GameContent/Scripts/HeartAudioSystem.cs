@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Kowa.MemoRandom;
 
 public class HeartAudioSystem : MonoBehaviour 
 {
@@ -11,6 +12,8 @@ public class HeartAudioSystem : MonoBehaviour
 	public float MinRate = 0.1f;
 	[Tooltip("The maximal heart rate.")]
 	public float MaxRate = 1f;
+	[Tooltip("The heart beat audio clips")]
+	public AudioClip[] Clips;
 
 	private float _initOffsetTime;
 	private AudioSource _audioSource;
@@ -56,6 +59,8 @@ public class HeartAudioSystem : MonoBehaviour
 
 	private IEnumerator WaitAndPlayAudio()
 	{
+		_audioSource.clip = Clips.DrawNext();
+		Debug.Log("Played: " + _audioSource.clip);
 		_audioSource.Play();
 		yield return new WaitForSeconds(OffsetTime);
 		StartCoroutine( WaitAndPlayAudio() );
