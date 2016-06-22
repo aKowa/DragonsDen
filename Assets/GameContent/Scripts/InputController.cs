@@ -62,7 +62,7 @@ public class InputController : MonoBehaviour
 
 		if (h == 0 || this.isRotating) return;
 		this.isRotating = true;
-		EventManager.FirePlayerRotate(h, DoneRotating);
+		EventManager.FirePlayerRotate(h * -1, DoneRotating);
 	}
 
 	private void OnDoneRotating()
