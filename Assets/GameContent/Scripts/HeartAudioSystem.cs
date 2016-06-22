@@ -4,11 +4,11 @@ using Kowa.MemoRandom;
 
 public class HeartAudioSystem : MonoBehaviour
 {
-	[Tooltip ( "The time to wait between heart beats." )]
+	[Tooltip ( "The time to wait between heart beats. No waiting time between playback at 0." )]
 	public float OffsetTime = 1f;
 	[Tooltip ( "How much faster should the heart rate go the close the player is to an enemy?" )]
 	public float EncounterScalar = 1f;
-	[Tooltip ( "The minimal offset time for playing the heart beat." )]
+	[Tooltip ( "The minimal offset time for playing the heart beat. No waiting time between playback at 0." )]
 	public float MinOffset = 0.1f;
 	[Tooltip ( "The maximal offset time for playing the heart beat." )]
 	public float MaxOffset = 1f;

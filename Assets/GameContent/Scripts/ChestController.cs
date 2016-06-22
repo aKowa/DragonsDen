@@ -32,6 +32,7 @@ public class ChestController : MonoBehaviour
 
 		audioSource.clip = PickUpClip;
 		audioSource.loop = false;
+		audioSource.Play();
 		GameObject.Find("Dragon").GetComponent<DragonWakUpController>().WakeUp();
 		exit.SetActive(true);
 		exit.GetComponent<AudioSource>().Play();
