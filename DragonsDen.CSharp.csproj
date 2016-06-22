@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.5f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -72,8 +74,8 @@
     <Compile Include="Assets\GameContent\Scripts\ChestController.cs" />
     <Compile Include="Assets\GameContent\Scripts\DeathSound.cs" />
     <Compile Include="Assets\GameContent\Scripts\DisableOnCollision.cs" />
-    <Compile Include="Assets\GameContent\Scripts\DragonController.cs" />
     <Compile Include="Assets\GameContent\Scripts\DragonSounds.cs" />
+    <Compile Include="Assets\GameContent\Scripts\DragonWakUpController.cs" />
     <Compile Include="Assets\GameContent\Scripts\EnemyController.cs" />
     <Compile Include="Assets\GameContent\Scripts\EnemyPatrol.cs" />
     <Compile Include="Assets\GameContent\Scripts\EventManager.cs" />
@@ -84,11 +86,13 @@
     <Compile Include="Assets\GameContent\Scripts\HeartAudioSystem.cs" />
     <Compile Include="Assets\GameContent\Scripts\InputController.cs" />
     <Compile Include="Assets\GameContent\Scripts\KillZone.cs" />
+    <Compile Include="Assets\GameContent\Scripts\Obsolete\DragonController.cs" />
     <Compile Include="Assets\GameContent\Scripts\PatrolLine.cs" />
     <Compile Include="Assets\GameContent\Scripts\PlayerTransformSystem.cs" />
     <Compile Include="Assets\GameContent\Scripts\ResetPlayer.cs" />
     <Compile Include="Assets\GameContent\Scripts\SoundColliderController.cs" />
     <Compile Include="Assets\GameContent\Scripts\Spawn.cs" />
+    <Compile Include="Assets\GameContent\Scripts\WallAudio.cs" />
     <Compile Include="Assets\GameContent\Scripts\WallSystem.cs" />
     <Compile Include="Assets\MemoRandom\ExtensionMethods.cs" />
     <Compile Include="Assets\MemoRandom\Lottery\Lottery.cs" />

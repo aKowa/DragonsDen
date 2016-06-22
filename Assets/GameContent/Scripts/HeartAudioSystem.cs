@@ -12,17 +12,25 @@ public class HeartAudioSystem : MonoBehaviour
 	public float MinRate = 0.1f;
 	[Tooltip("The maximal heart rate.")]
 	public float MaxRate = 1f;
+	[Tooltip ( "Should the heart beat always play from the start?" )]
+	public bool PlayInBackground = false;
 	[Tooltip("The heart beat audio clips")]
 	public AudioClip[] Clips;
 
 	private float _initOffsetTime;
 	private AudioSource _audioSource;
 
+
 	private void Awake()
 	{
 		_initOffsetTime = OffsetTime;
 		_audioSource = GetComponent<AudioSource>();
+		if (Clips == null)
+		{
+			Debug.LogError("No AudioClips on Heart!");
+		}
 	}
+
 
 	private void OnEnable()
 	{
@@ -30,41 +38,56 @@ public class HeartAudioSystem : MonoBehaviour
 		EventManager.EnemyInSightEvent += OnEnemyStayInSight;
 		EventManager.EnemyExitSightEvent += OnEnemyLeftSight;
 		EventManager.PlayerDied += OnPlayerDeath;
+		if (PlayInBackground)
+		{
+			StartCoroutine( WaitAndPlayAudio() );
+		}
 	}
+
 
 	private void OnDisable()
 	{
-		StopAllCoroutines();
+		if (!PlayInBackground)
+		{
+			StopAllCoroutines();
+		}
 		EventManager.EnemyEnterSightEvent -= OnEnemyEnterSight;
 		EventManager.EnemyInSightEvent -= OnEnemyStayInSight;
 		EventManager.EnemyExitSightEvent -= OnEnemyLeftSight;
 		EventManager.PlayerDied -= OnPlayerDeath;
 	}
 
+
 	private void OnEnemyEnterSight()
 	{
 		StartCoroutine ( WaitAndPlayAudio () );
 	}
+
 
 	private void OnEnemyStayInSight(float distanceToEnemy)
 	{
 		OffsetTime = Mathf.Clamp( _initOffsetTime * distanceToEnemy * EncounterRateModifier, MinRate, MaxRate);
 	}
 
+
 	private void OnEnemyLeftSight()
 	{
-		StopAllCoroutines();
+		if (!PlayInBackground)
+		{
+			StopAllCoroutines();
+		}
 		OffsetTime = _initOffsetTime;
 	}
+
 
 	private IEnumerator WaitAndPlayAudio()
 	{
 		_audioSource.clip = Clips.DrawNext();
-		Debug.Log("Played: " + _audioSource.clip);
 		_audioSource.Play();
 		yield return new WaitForSeconds(OffsetTime);
 		StartCoroutine( WaitAndPlayAudio() );
 	}
+
 
 	private void OnPlayerDeath ( AudioClip clip )
 	{

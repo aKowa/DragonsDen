@@ -5,38 +5,36 @@ using System.Collections;
 public class ChestController : MonoBehaviour
 {
 	[Tooltip("The chest pickup sound.")]
-	public AudioClip Clip;
-	public GameObject Exit;
-	public DragonController DragonController;
-	private AudioSource source;
+	public AudioClip PickUpClip;
+
+	private GameObject exit;
+	private AudioSource audioSource;
+
 
 	public void Awake ()
 	{
-		source = GetComponent<AudioSource>();
-	}
-
-	public void OnTriggerEnter2D ( Collider2D collision )
-	{
-		if (collision.tag == "Player")
+		audioSource = GetComponent<AudioSource>();
+		exit = GameObject.Find("Exit");
+		if (exit == null)
 		{
-			if (Clip != null)
-			{
-				StartCoroutine( PlayAndStop(Clip) );
-			}
-			Exit.SetActive(true);
-			var dragonSource = DragonController.GetComponent<AudioSource>();
-			dragonSource.clip = DragonController.Sounds.Kill;
-			dragonSource.Play();
-			dragonSource.loop = true;
-			DragonController.Disable();
+			Debug.LogError("Did not find Exit game object! please set to active!");
+		}
+		else
+		{
+			exit.SetActive(false);
 		}
 	}
 
-	private IEnumerator PlayAndStop(AudioClip clip)
+
+	public void OnTriggerEnter2D ( Collider2D collision )
 	{
-		source.clip = Clip;
-		source.Play();
-		yield return new WaitForSeconds(clip.length);
-		source.Stop();
+		if (collision.tag != "Player") return;
+
+		audioSource.clip = PickUpClip;
+		audioSource.loop = false;
+		GameObject.Find("Dragon").GetComponent<DragonWakUpController>().WakeUp();
+		exit.SetActive(true);
+		exit.GetComponent<AudioSource>().Play();
+		this.GetComponent<BoxCollider2D>().enabled = false;
 	}
 }

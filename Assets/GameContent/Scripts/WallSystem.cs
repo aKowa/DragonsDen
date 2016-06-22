@@ -1,27 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.Scripts;
+using Kowa.MemoRandom;
 
+[RequireComponent(typeof(AudioSource))]
 public class WallSystem : MonoBehaviour
 {
-	private AudioSource _source;
+	private AudioSource audioSource;
+	private WallAudio wall;
 
 	private void Start ()
 	{
-		_source = this.GetComponent<AudioSource> ();
-		if (_source == null)
-		{
-			Debug.LogError ( "Did not find an Audio. Not assigned on " + this.name + "?" );
-		}
-		else if (_source.clip == null)
-		{
-			Debug.Log ( "No audio clip assigned on Audio of " + this.name );
-		}
+		audioSource = this.GetComponent<AudioSource> ();
+		wall = this.transform.parent.GetComponent<WallAudio>();
 	}
 
 	private void OnTriggerEnter2D ( Collider2D collision )
 	{
 		if (collision.transform.tag != "Player") return;
-		_source.Play ();
+		audioSource.clip = wall.Clips.DrawNext();
+		audioSource.Play ();
 	}
 }
