@@ -26,7 +26,7 @@ namespace Kowa
 					return Dictionary.Get(collection).DrawNext();
 				}
 				Dictionary.Add(new Lottery<T>(collection));
-				Debug.Log("Added " + collection.GetType() + " to dictionary");
+				//Debug.Log("Added " + collection.GetType() + " to dictionary");
 				return Dictionary.Get(collection).DrawNext();
 			}
 

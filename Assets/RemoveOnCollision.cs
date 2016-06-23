@@ -10,6 +10,7 @@ public class RemoveOnCollision : MonoBehaviour
 		if (collision.tag == "Player")
 		{
 			Destroy(ObjectToRemove);
+			this.GetComponent<AudioSource>().enabled = false;
 		}
 	}
 }

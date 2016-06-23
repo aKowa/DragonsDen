@@ -6,22 +6,21 @@ public class ChestController : MonoBehaviour
 {
 	[Tooltip("The chest pickup sound.")]
 	public AudioClip PickUpClip;
-
-	private GameObject exit;
+	[Tooltip("The Exit game object to be set active on collision.")]
+	public GameObject Exit;
 	private AudioSource audioSource;
 
 
 	public void Awake ()
 	{
 		audioSource = GetComponent<AudioSource>();
-		exit = GameObject.Find("Exit");
-		if (exit == null)
+		if (Exit == null)
 		{
 			Debug.LogError("Did not find Exit game object! please set to active!");
 		}
 		else
 		{
-			exit.SetActive(false);
+			Exit.SetActive(false);
 		}
 	}
 
@@ -34,8 +33,8 @@ public class ChestController : MonoBehaviour
 		audioSource.loop = false;
 		audioSource.Play();
 		GameObject.Find("Dragon").GetComponent<DragonWakUpController>().WakeUp();
-		exit.SetActive(true);
-		exit.GetComponent<AudioSource>().Play();
+		Exit.SetActive(true);
+		Exit.GetComponent<AudioSource>().Play();
 		this.GetComponent<BoxCollider2D>().enabled = false;
 	}
 }
