@@ -25,7 +25,7 @@ public class ExitController : MonoBehaviour
 	}
 
 
-	private void OnFoundChest ( AudioClip[] clips )
+	private void OnFoundChest ()
 	{
 		SetActive(true);
 	}
