@@ -6,8 +6,6 @@ public class ChestController : MonoBehaviour
 {
 	[Tooltip("The chest pickup sound.")]
 	public AudioClip PickUpClip;
-	[Tooltip("The coin audio clips to be played in addition to the footsteps after chest was found.")]
-	public AudioClip[] FootstepCoinClips;
 
 	private AudioSource audioSource;
 
@@ -21,7 +19,7 @@ public class ChestController : MonoBehaviour
 	public void OnTriggerEnter2D ( Collider2D collision )
 	{
 		if (collision.tag != "Player") return;
-		EventManager.FireFoundChest(FootstepCoinClips);
+		EventManager.FireFoundChest();
 		OnChestFound();
 	}
 
