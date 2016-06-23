@@ -11,6 +11,9 @@ public static class EventManager
 	public static event Action EnemyExitSightEvent;
 	public static event Action<AudioClip[], AudioClip[]> PlayerChangedGround;
 	public static event Action<AudioClip> PlayerDied;
+	public static event Action FoundChest;
+	public static event Action ReachedExit;
+	public static event Action DragonAwake;
 
 	public static void FirePlayerMove(Vector2 movement)
 	{
@@ -58,5 +61,23 @@ public static class EventManager
 	{
 		if (PlayerDied != null)
 			PlayerDied (clip);
+	}
+
+	public static void FireFoundChest()
+	{
+		if (FoundChest != null)
+			FoundChest ();
+	}
+
+	public static void FireReachedExit ()
+	{
+		if (ReachedExit != null)
+			ReachedExit ();
+	}
+
+	public static void FireDragonAwake ()
+	{
+		if (DragonAwake != null)
+			DragonAwake ();
 	}
 }

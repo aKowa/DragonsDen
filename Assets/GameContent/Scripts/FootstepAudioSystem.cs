@@ -17,6 +17,7 @@ public class FootstepAudioSystem : MonoBehaviour
 		EventManager.PlayerMoveEvent += OnPlayerMoveEvent;
 		EventManager.PlayerChangedGround += ChangeClip;
 		EventManager.PlayerRotateEvent += OnRotate;
+		
 	}
 
 	private void OnDisable ()

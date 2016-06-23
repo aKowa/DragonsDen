@@ -69,11 +69,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ExitController.cs" />
     <Compile Include="Assets\GameContent\Scripts\ChestController.cs" />
     <Compile Include="Assets\GameContent\Scripts\DeathSound.cs" />
     <Compile Include="Assets\GameContent\Scripts\DisableOnCollision.cs" />
+    <Compile Include="Assets\GameContent\Scripts\DragonController.cs" />
     <Compile Include="Assets\GameContent\Scripts\DragonSounds.cs" />
-    <Compile Include="Assets\GameContent\Scripts\DragonWakUpController.cs" />
     <Compile Include="Assets\GameContent\Scripts\EnemyController.cs" />
     <Compile Include="Assets\GameContent\Scripts\EnemyPatrol.cs" />
     <Compile Include="Assets\GameContent\Scripts\EventManager.cs" />
@@ -84,11 +85,11 @@
     <Compile Include="Assets\GameContent\Scripts\HeartAudioSystem.cs" />
     <Compile Include="Assets\GameContent\Scripts\InputController.cs" />
     <Compile Include="Assets\GameContent\Scripts\KillZone.cs" />
-    <Compile Include="Assets\GameContent\Scripts\Obsolete\DragonController.cs" />
     <Compile Include="Assets\GameContent\Scripts\PatrolLine.cs" />
     <Compile Include="Assets\GameContent\Scripts\PlayerTransformSystem.cs" />
     <Compile Include="Assets\GameContent\Scripts\ResetPlayer.cs" />
     <Compile Include="Assets\GameContent\Scripts\SoundColliderController.cs" />
+    <Compile Include="Assets\GameContent\Scripts\SoundController.cs" />
     <Compile Include="Assets\GameContent\Scripts\Spawn.cs" />
     <Compile Include="Assets\GameContent\Scripts\WallAudio.cs" />
     <Compile Include="Assets\GameContent\Scripts\WallSystem.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Assets\MemoRandom\Lottery\LotteryManager.cs" />
     <Compile Include="Assets\MemoRandom\Lottery\LotteryMode.cs" />
     <Compile Include="Assets\MemoRandom\Shuffle\ShuffleManager.cs" />
-    <Compile Include="Assets\RemoveOnCollision.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
