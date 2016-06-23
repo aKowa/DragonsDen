@@ -35,7 +35,7 @@ public class DragonController : MonoBehaviour
 	}
 
 
-	public void OnChestFound ()
+	public void OnChestFound ( AudioClip[] clips )
 	{
 		audioSource = this.GetComponent<AudioSource> ();
 		audioSource.clip = WakeUpClip;
@@ -55,6 +55,7 @@ public class DragonController : MonoBehaviour
 		audioSource.loop = true;
 		audioSource.Play ();
 		followPlayer = true;
+		EventManager.FireDragonAwake();
 	}
 
 
