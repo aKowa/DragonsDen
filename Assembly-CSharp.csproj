@@ -65,6 +65,7 @@
      <Compile Include="Assets\GameContent\Scripts\PlayerTransformSystem.cs" />
      <Compile Include="Assets\GameContent\Scripts\ResetPlayer.cs" />
      <Compile Include="Assets\GameContent\Scripts\SoundColliderController.cs" />
+     <Compile Include="Assets\GameContent\Scripts\SoundController.cs" />
      <Compile Include="Assets\GameContent\Scripts\Spawn.cs" />
      <Compile Include="Assets\GameContent\Scripts\WallAudio.cs" />
      <Compile Include="Assets\GameContent\Scripts\WallSystem.cs" />
