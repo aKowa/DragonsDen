@@ -38,6 +38,7 @@ public class FootstepAudioSystem : MonoBehaviour
 
 	private void ChangeClip ( AudioClip[] newStepClips, AudioClip[] newRotateClips )
 	{
+		if (this.name == "Coins") return;
 		stepClips = newStepClips;
 		rotateClips = newRotateClips;
 	}
@@ -83,7 +84,7 @@ public class FootstepAudioSystem : MonoBehaviour
 		Destroy(clone.GetComponent<SoundColliderController>());
 		var cloneSystem = clone.GetComponent<FootstepAudioSystem>();
 		cloneSystem.stepClips = clips;
-		cloneSystem.rotateClips = null;
+		cloneSystem.rotateClips = clips;
 	}
 
 
